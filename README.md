@@ -11,3 +11,7 @@ Se desideri ottenere i file in altri formati o proporre modifiche, contattami al
 Ogni contributo è benvenuto per migliorare e ampliare il progetto 🚀.
 
 Se vuoi sostenere il progetto, puoi fare una donazione attraverso il seguente link: [PayPal](https://www.paypal.com/paypalme/ushbro) 💌.
+
+Il prossimo passo è quello di convertire tutte le dispense in markdown, se vuoi aiutare a velocizzare il processo puoi contattarmi privatamente all'indirizzo mail
+
+---
