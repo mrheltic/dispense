@@ -1,0 +1,48 @@
+# LaTeX temporary files
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.fls
+*.out
+*.dvi
+*.synctex.gz
+*.fdb_latexmk
+
+# BibTeX and Bibliography
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+
+# Index files
+*.idx
+*.ilg
+*.ind
+
+# Glossary files
+*.glo
+*.gls
+*.glg
+
+# Beamer
+*.nav
+*.pre
+*.snm
+*.vrb
+
+# Editor files
+*~
+*.bak
+*.swp
+*.swo
+.DS_Store
+
+# Build directories
+build/
+_build/
+_minted*/
+
+# Generated PDFs (uncomment if you don't want to track PDFs)
+# *.pdf

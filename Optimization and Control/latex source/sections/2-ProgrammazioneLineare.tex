@@ -1,0 +1,207 @@
+% filepath: c:\Users\mrheltic\Documents\GitHub\dispense\Optimization and Control\latex source\sections\1-Introduzione.tex
+
+\chapter{Programmazione Lineare}
+
+\section{Problemi e Istanze}
+Un problema P è una domanda o una questione la cui risposta dipende dal valore assunto da un insieme di parametri e variabili.
+
+Un problema è formalmente definito da:
+\begin{itemize}
+    \item Descrizione dei parametri, ovvero le quantità note che caratterizzano il problema
+    \item Descrizione delle proprietà che deve soddisfare la soluzione cercata
+\end{itemize}
+
+Una formulazione comune di un problema prevede:
+\begin{itemize}
+    \item L'insieme delle soluzioni ammissibili F, cioè tutte le possibili risposte che rispettano i vincoli imposti
+    \item Una funzione obiettivo z che assegna un valore (costo, profitto, ecc.) a ciascuna soluzione
+\end{itemize}
+
+Formalmente:
+\begin{equation}
+z \colon F \rightarrow \mathbb{R}
+\end{equation}
+
+Un'istanza di un problema P, invece, è una versione specifica del problema ottenuta fissando i valori dei parametri. In altre parole, è un caso concreto del problema generale.
+
+\section{Problemi di Ottimizzazione}
+Un problema di ottimizzazione è un problema in cui si cerca, tra tutte le soluzioni ammissibili $x \in F$, una soluzione ottima $x^*$ che massimizza o minimizza la funzione obiettivo $z$.
+
+Formulazioni equivalenti:
+\begin{itemize}
+    \item Minimizzazione
+    \begin{equation}
+    P = (F, z; \min) \Leftrightarrow \min\{z(x) : x \in F\}
+    \end{equation}
+    
+    \item Massimizzazione
+    \begin{equation}
+    P = (F, z; \max) \Leftrightarrow \max\{z(x) : x \in F\}
+    \end{equation}
+\end{itemize}
+
+\section{Problemi di programmazione Lineare}
+Un problema di programmazione lineare è un caso particolare di problema di ottimizzazione in cui:
+\begin{itemize}
+    \item La funzione obiettivo è lineare
+    \item I vincoli che definiscono l'insieme F sono lineari e chiusi (cioè includono i punti di frontiera)
+    \item Le variabili sono continue (non intere)
+    \item I parametri sono deterministici (noti e non soggetti a incertezza)
+\end{itemize}
+
+La sua forma esplicita è del tipo:
+\begin{align}
+\max & \quad c_1x_1 + c_2x_2 + \cdots + c_nx_n \\
+\text{soggetto a} & \quad a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n \leq b_1 \\
+& \quad \vdots \\
+& \quad a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n \leq b_m \\
+& \quad x_1, x_2, \ldots, x_n \geq 0
+\end{align}
+
+È possibile scriverla anche in forma matriciale, ovvero:
+\begin{align}
+\max & \quad z = c^T x \\
+\text{soggetto a} & \quad Ax \leq b \\
+& \quad x \geq 0
+\end{align}
+
+Dove:
+\begin{itemize}
+    \item $c \in \mathbb{R}^n$ : vettore dei coefficienti della funzione obiettivo;
+    \item $A \in \mathbb{R}^{m \times n}$ : matrice dei coefficienti dei vincoli (matrice tecnologica);
+    \item $b \in \mathbb{R}^m$ : vettore dei termini noti;
+    \item $x \in \mathbb{R}^n$ : vettore delle variabili decisionali;
+    \item $F = \{x \in \mathbb{R}^n : Ax \leq b, x \geq 0\}$ : insieme delle soluzioni ammissibili.
+\end{itemize}
+
+\section{Esempio di pianificazione della produzione - 1}
+
+\subsection{Descrizione}
+L'obiettivo è massimizzare il profitto derivante dalla produzione e vendita di due tipi di biocarburanti, quello di tipo 1 e quello di tipo 2.
+
+\subsection{Vincoli}
+\begin{itemize}
+    \item Produzione divisa in tre stabilimenti: uno per la preparazione, uno per la purificazione e uno per l'estrazione
+    \item Ogni stabilimento ha una capacità giornaliera limitata (in termini di ore)
+    \item Entrambi i biocarburanti devono essere lavorati in ciascuno dei tre stabilimenti
+\end{itemize}
+
+\subsection{Dati tecnologici}
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Stabilimento} & \textbf{Biocarburante 1 (h/ton)} & \textbf{Biocarburante 2 (h/ton)} & \textbf{Capacità giornaliera (h)} \\
+\hline
+Preparazione   & 0.72 & 0.85 & 18 \\
+\hline
+Purificazione  & 1.68 & 1.42 & 18 \\
+\hline
+Estrazione     & 1.92 & 2.12 & 16 \\
+\hline
+\end{tabular}
+}
+\end{table}
+
+\subsection{Formulazione matematica}
+
+\subsubsection{Variabili decisionali}
+Siano:
+\begin{itemize}
+    \item $x_1$ : quantità (in tonnellate) di Biocarburante 1 da produrre
+    \item $x_2$ : quantità (in tonnellate) di Biocarburante 2 da produrre
+\end{itemize}
+
+Le variabili sono continue e non negative:
+\begin{equation}
+x_1, x_2 \in \mathbb{R}_{\geq 0}
+\end{equation}
+
+\subsubsection{Funzione obiettivo}
+Massimizzare il profitto totale:
+\begin{equation}
+\max z(x) = 540x_1 + 590x_2
+\end{equation}
+
+\subsubsection{Vincoli di capacità}
+
+\[
+\begin{cases}
+0.72x_1 + 0.85x_2 \leq 18 \quad &\text{(Preparazione)} \\
+1.68x_1 + 1.42x_2 \leq 18 \quad &\text{(Purificazione)} \\
+1.92x_1 + 2.12x_2 \leq 16 \quad &\text{(Estrazione)} \\
+x_1, x_2 \geq 0 \quad &\text{(Non negatività)}
+\end{cases}
+\]
+
+
+\section{Esempio di pianificazione della produzione - 2}
+
+\subsection{Descrizione}
+L'obiettivo è massimizzare il profitto settimanale, calcolato come differenza tra ricavi di vendita e costi di produzione, per tre tipi di argilla: A, B e C.
+
+\subsection{Vincoli}
+\begin{itemize}
+    \item La produzione avviene in tre stabilimenti, ciascuno con una capacità settimanale limitata (in ore)
+    \item Ogni tipo di argilla può essere lavorato in uno qualsiasi dei tre stabilimenti
+    \item La quantità totale di argilla A deve essere compresa tra il 50\% e il 70\% della produzione complessiva
+\end{itemize}
+
+\subsection{Dati tecnologici}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{Stabilimento} & \textbf{Argilla A} & \textbf{Argilla B} & \textbf{Argilla C} & \textbf{Capacità} & \textbf{Costo} \\
+& \textbf{18€/quintale} & \textbf{21€/quintale} & \textbf{24€/quintale} & \textbf{settimanale (h)} & \textbf{[€/h]} \\
+\hline
+1 & 0.18 & 0.21 & 0.24 & 90 & 3.52 \\
+\hline
+2 & 0.20 & 0.18 & 0.21 & 85 & 4.18 \\
+\hline
+3 & 0.12 & 0.22 & 0.23 & 80 & 3.98 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Formulazione matematica}
+
+\subsubsection{Variabili decisionali}
+Siano:
+\begin{itemize}
+    \item $x_{iA}$ : quantità di argilla A prodotta nello stabilimento $i$
+    \item $x_{iB}$ : quantità di argilla B prodotta nello stabilimento $i$
+    \item $x_{iC}$ : quantità di argilla C prodotta nello stabilimento $i$
+\end{itemize}
+
+Quindi, siano:
+\begin{equation}
+x_{iA}, x_{iB}, x_{iC} \in \mathbb{R}_{\geq 0}, \quad \text{per } i=1,2,3
+\end{equation}
+
+\subsubsection{Funzione obiettivo}
+Massimizzare il profitto, ovvero la differenza tra ricavi e costi, cioè:
+\begin{align*}
+\max z = & \ 18(x_{1A} + x_{2A} + x_{3A}) + 21(x_{1B} + x_{2B} + x_{3B}) + 24(x_{1C} + x_{2C} + x_{3C}) \\
+& - \left[ 3.52(0.18x_{1A} + 0.21x_{1B} + 0.24x_{1C}) \right. \\
+& \left. + 4.18(0.20x_{2A} + 0.18x_{2B} + 0.21x_{2C}) \right. \\
+& \left. + 3.98(0.12x_{3A} + 0.22x_{3B} + 0.23x_{3C}) \right]
+\end{align*}
+
+\subsubsection{Vincoli di capacità}
+\[
+\begin{cases}
+    0.18x_{1A}+0.21x_{1B}+0.24x_{1C} \leq 90, \\
+    0.20x_{2A}+0.18x_{2B}+0.21x_{2C} \leq 85, \\
+    0.12x_{3A}+0.22x_{3B}+0.23x_{3C} \leq 80
+\end{cases}
+\]
+
+\subsubsection{Vincoli di proporzione sulla produzione di argilla A}
+\begin{align}
+x_{1A}+x_{2A}+x_{3A} &\geq 0.5 \cdot T \\
+x_{1A}+x_{2A}+x_{3A} &\leq 0.7 \cdot T
+\end{align}
+
+Dove: $T = \sum_{i=1}^{3}(x_{iA}+x_{iB}+x_{iC})$

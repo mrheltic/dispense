@@ -1,0 +1,139 @@
+% filepath: c:\Users\mrheltic\Documents\GitHub\dispense\Optimization and Control\latex source\sections\1-Introduzione.tex
+
+\chapter{Introduzione}
+Il Corso affronterà gli aspetti tecnologici e metodologici della \textbf{Ricerca Operativa} (\textbf{Operations Research}). In particolare, cominciamo parlando delle sue fasi.
+
+\section{Fasi del metodo della ricerca operativa}
+
+\subsection{\textbf{Analisi del Sistema} e \textbf{Formulazione del Problema}}
+\begin{itemize}
+    \item Si comincia con l'osservazione dettagliata di un \textbf{sistema reale}, con l'obiettivo di isolare un \textbf{problema gestionale} specifico
+    \item Si definiscono in modo rigoroso gli \textbf{obiettivi} dello studio, analizzando le caratteristiche del sistema
+    \item Vengono identificati i \textbf{parametri principali} e le \textbf{variabili} del sistema, distinguendo tra quelle \textbf{controllabili} e quelle \textbf{non controllabili}
+\end{itemize}
+
+\subsection{\textbf{Costruzione del modello}}
+\begin{itemize}
+    \item Partendo dall'analisi precedente si costruisce un \textbf{modello rappresentativo} del problema
+    \item In una prima fase il modello può essere \textbf{qualitativo} (cioè una descrizione informale del sistema), successivamente si sviluppa un \textbf{modello quantitativo} (ovvero una rappresentazione matematica del sistema reale), ne parleremo successivamente in modo più approfondito
+    \item Un modello di ottimizzazione deve:
+    \begin{itemize}
+        \item Rappresentare il comportamento del sistema tramite \textbf{variabili decisionali}
+        \item Definire una \textbf{funzione obiettivo} da massimizzare o minimizzare
+        \item Includere eventuali \textbf{vincoli} che limitano le scelte possibili
+    \end{itemize}
+\end{itemize}
+
+\subsection{\textbf{Verifica del modello} e \textbf{Test delle Ipotesi}}
+\begin{itemize}
+    \item Una volta costruito, il modello deve essere \textbf{verificato sperimentalmente}
+    \item Prima ancora della sperimentazione è necessario effettuare una \textbf{raccolta dati} accurata
+    \item Le sperimentazioni possono essere:
+    \begin{itemize}
+        \item \textbf{Manipolazione} del modello per ottenere informazioni rilevanti
+        \item \textbf{Ciclo di feedback}, ovvero i risultati suggeriscono delle modifiche al modello, che vengono testate nelle iterazioni successive
+    \end{itemize}
+\end{itemize}
+
+\subsection{\textbf{Conclusioni} e \textbf{Implementazione}}
+\begin{itemize}
+    \item L'ultima fase consiste nel trarre \textbf{conclusioni} dalla soluzione del modello e \textbf{implementarle} nel sistema reale
+    \item È una fase \textbf{cruciale} in quanto i benefici dello studio si realizzano soltanto quando le soluzioni vengono effettivamente applicate
+    \item Bisogna \textbf{comunicare in modo chiaro} le soluzioni ai decisori, affinché possano essere adottate
+\end{itemize}
+
+\section{Modelli Qualitativi}
+Un \textbf{modello quantitativo} di ottimizzazione è generalmente composto da:
+\begin{itemize}
+    \item \textbf{Variabili decisionali}: Le scelte da compiere, la soluzione consiste nel determinare i valori ottimali di queste variabili
+    \item \textbf{Funzioni obiettivo}: misura la qualità o la desiderabilità della soluzione, può essere un costo da minimizzare o un profitto da massimizzare
+    \item \textbf{Vincoli}: limitano le scelte possibili, possono essere delle equazioni o disequazioni che riflettono i limiti tecnologici, economici o fisici
+    \item \textbf{Parametri}: valori noti (costanti) che collegano le variabili decisionali alla funzione obiettivo e ai vincoli
+\end{itemize}
+
+\textbf{N.B.}: Non tutti i modelli devono necessariamente includere tutti e tre gli elementi fondamentali (variabili, vincoli o funzione obiettivo), ad esempio abbiamo:
+\begin{itemize}
+    \item Un modello senza vincoli è detto \textbf{ottimizzazione non vincolata}
+    \item Un modello senza funzione obiettivo può essere usato per trovare una \textbf{soluzione fattibile}, senza ottimizzare nulla
+\end{itemize}
+
+\section{Osservazioni generali sui modelli}
+Bisogna ricordare che tutti i modelli sono, per loro natura, delle \textbf{astrazioni della realtà}. Questo significa che la \textbf{soluzione ottimale} ottenuta dal modello potrebbe non coincidere perfettamente con la soluzione ottimale del problema reale.
+
+Tuttavia, se il modello è \textbf{ben formulato} e se vengono effettuate \textbf{sperimentazioni} e \textbf{raffinamenti} prima di cercare la soluzione ottimale, è ragionevole aspettarsi che la soluzione ottenuta sia una \textbf{buona approssimazione} del problema reale.
+
+\section{Algoritmi ed euristiche}
+La soluzione di un modello può essere ottenuta tramite un \textbf{algoritmo}, ovvero:
+\begin{itemize}
+    \item Un insieme di \textbf{regole o procedure} da seguire in modo sequenziale o iterativo
+    \item L'obiettivo è trovare o avvicinarsi alla \textbf{migliore soluzione possibile} per il modello dato
+\end{itemize}
+
+\textbf{N.B.} In alcuni casi si utilizzano le \textbf{euristiche}, cioè strategie semplificate per trovare \textbf{soluzioni accettabili} in tempi ragionevoli, soprattutto quando il problema è troppo complesso per essere risolto esattamente.
+
+\section{Esempio di problema di pianificazione della produzione}
+Un'azienda produce due prodotti, chiamati ``A'' e ``B''. Attualmente la produzione è organizzata in modo da alternare settimanalmente la produzione di ciascun prodotto.
+
+Un giovane analista di ricerca operativa suggerisce che potrebbe essere più \textbf{efficiente} e \textbf{redditizio} produrre entrambi i prodotti ogni settimana, ottimizzando l'uso dei macchinari.
+
+\subsection{Fase 1: \textbf{Analisi di fattibilità}}
+Un team composto dall'analista e dai manager aziendali analizza la \textbf{fattibilità tecnica}, \textbf{operativa} ed \textbf{economica} di modificare il processo produttivo. La conclusione è che vale la pena tentare di ottimizzare il sistema.
+
+\subsection{Fase 2: \textbf{Costruzione del modello matematico}}
+\paragraph{\textbf{Variabili decisionali}}
+\begin{itemize}
+    \item $x_1$: Numero di lotti (da 1000 unità) del prodotto A da produrre in una settimana
+    \item $x_2$: Numero di lotti (da 1000 unità) del prodotto B da produrre in una settimana
+\end{itemize}
+
+\paragraph{\textbf{Funzione obiettivo}}
+L'obiettivo è \textbf{massimizzare} il profitto netto totale:
+\begin{itemize}
+    \item Profitto per lotto di A: 20\$
+    \item Profitto per lotto di B: 50\$
+\end{itemize}
+Bisogna quindi massimizzare $P=20x_1+50x_2$
+
+\paragraph{\textbf{Vincoli di produzione}}
+I prodotti richiedono tempo su tre macchine, con le seguenti caratteristiche:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Macchina} & \textbf{Ore per A} & \textbf{Ore per B} & \textbf{Capacità settimanale} \\
+\hline
+1 & 1 & 2 & 35 ore \\
+\hline
+2 & 2 & 1 & 40 ore \\
+\hline
+3 & 1 & 3 & 37 ore \\
+\hline
+\end{tabular}
+\end{table}
+
+Da questi dati si ottengono i vincoli:
+\begin{equation}
+\begin{cases}
+x_1 + 2x_2 \leq 35 & \text{(Macchina 1)} \\
+2x_1 + x_2 \leq 40 & \text{(Macchina 2)} \\
+x_1 + 3x_2 \leq 37 & \text{(Macchina 3)} \\
+x_1 \geq 0, x_2 \geq 0 & \text{(Non negatività)}
+\end{cases}
+\end{equation}
+
+\paragraph{\textbf{Modello matematico completo}}
+Volendo unire tutte le informazioni ottenute finora possiamo quindi scrivere il nostro modello completo:
+
+\begin{align*}
+\text{Massimizzare } & P=20x_1+50x_2 \\
+\text{soggetto a: } & \\
+& \begin{cases}
+x_1+2x_2 \leq 35 \\
+2x_1+x_2 \leq 40 \\
+x_1+3x_2 \leq 37 \\
+x_1 \geq 0, x_2 \geq 0
+\end{cases}
+\end{align*}
+
+Questo è un modello di \textbf{programmazione lineare}, poiché sia la funzione obiettivo che i vincoli sono espressi in forma \textbf{lineare}.
