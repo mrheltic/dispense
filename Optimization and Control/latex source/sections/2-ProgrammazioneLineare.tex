@@ -1,20 +1,112 @@
+
+
+
+
 \chapter{Programmazione Lineare}
 
+
+
+
+
 \section{Problemi e Istanze}
+
+
 Un problema P è una domanda o una questione la cui risposta dipende dal valore assunto da un insieme di parametri e variabili.
-% … (testo invariato)
+
+
+
+
+
+Un problema è formalmente definito da:
+
+
+\begin{itemize}
+
+
+    \item Descrizione dei parametri, ovvero le quantità note che caratterizzano il problema
+
+
+    \item Descrizione delle proprietà che deve soddisfare la soluzione cercata
+
+
+\end{itemize}
+
+
+
+
+
+Una formulazione comune di un problema prevede:
+
+
+\begin{itemize}
+    \item L'insieme delle soluzioni ammissibili F, cioè tutte le possibili risposte che rispettano i vincoli imposti
+    \item Una funzione obiettivo z che assegna un valore (costo, profitto, ecc.) a ciascuna soluzione
+\end{itemize}
+
+Formalmente:
+\[
+z \colon F \rightarrow \mathbb{R}
+\]
+
+Un'istanza di un problema P, invece, è una versione specifica del problema ottenuta fissando i valori dei parametri. In altre parole, è un caso concreto del problema generale.
 
 \section{Problemi di Ottimizzazione}
 Un problema di ottimizzazione è un problema in cui si cerca, tra tutte le soluzioni ammissibili $x \in F$, una soluzione ottima $x^*$ che massimizza o minimizza la funzione obiettivo $z$.
-% … (testo invariato)
+
+Formulazioni equivalenti:
+
+\begin{itemize}
+
+    \item Minimizzazione
+    \[
+    P = (F, z; \min) \Leftrightarrow \min\{z(x) : x \in F\}
+    \]
+    \item Massimizzazione
+    \[
+    P = (F, z; \max) \Leftrightarrow \max\{z(x) : x \in F\}
+    \]
+\end{itemize}
 
 \section{Problemi di programmazione Lineare}
 Un problema di programmazione lineare è un caso particolare di problema di ottimizzazione in cui:
-% … (testo e formule invariati)
+
+\begin{itemize}
+    \item La funzione obiettivo è lineare
+    \item I vincoli che definiscono l'insieme F sono lineari e chiusi (cioè includono i punti di frontiera)
+    \item Le variabili sono continue (non intere)
+    \item I parametri sono deterministici (noti e non soggetti a incertezza)
+\end{itemize}
+
+La sua forma esplicita è del tipo:
+\begin{align}
+\max & \quad c_1x_1 + c_2x_2 + \cdots + c_nx_n \\
+\text{soggetto a} & \quad a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n \leq b_1 \\
+& \quad \vdots \\
+& \quad a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n \leq b_m \\
+& \quad x_1, x_2, \ldots, x_n \geq 0
+\end{align}
+
+È possibile scriverla anche in forma matriciale, ovvero:
+\begin{align}
+\max & \quad z = c^T x \\
+\text{soggetto a} & \quad Ax \leq b \\
+& \quad x \geq 0
+\end{align}
+
+Dove:
+
+
+\begin{itemize}
+    \item $c \in \mathbb{R}^n$ : vettore dei coefficienti della funzione obiettivo;
+    \item $A \in \mathbb{R}^{m \times n}$ : matrice dei coefficienti dei vincoli (matrice tecnologica);
+    \item $b \in \mathbb{R}^m$ : vettore dei termini noti;
+    \item $x \in \mathbb{R}^n$ : vettore delle variabili decisionali;
+    \item $F = \{x \in \mathbb{R}^n : Ax \leq b, x \geq 0\}$ : insieme delle soluzioni ammissibili.
+\end{itemize}
 
 \section{Esempio di pianificazione della produzione - 1}
-
 \subsection{Descrizione}
+
 L'obiettivo è massimizzare il profitto derivante dalla produzione e vendita di due tipi di biocarburanti, quello di tipo 1 e quello di tipo 2.
 
 \subsection{Vincoli}
@@ -23,7 +115,6 @@ L'obiettivo è massimizzare il profitto derivante dalla produzione e vendita di 
     \item Ogni stabilimento ha una capacità giornaliera limitata (in termini di ore)
     \item Entrambi i biocarburanti devono essere lavorati in ciascuno dei tre stabilimenti
 \end{itemize}
-
 \subsection{Dati tecnologici}
 \begin{table}[h]
 \centering
@@ -43,21 +134,26 @@ Estrazione     & 1.92 & 2.12 & 16 \\
 \end{table}
 
 \subsection{Formulazione matematica}
-
 \subsubsection{Variabili decisionali}
 Siano:
+
 \begin{itemize}
     \item $x_1$ : quantità (in tonnellate) di Biocarburante 1 da produrre
     \item $x_2$ : quantità (in tonnellate) di Biocarburante 2 da produrre
 \end{itemize}
-\begin{equation}
+
+Le variabili sono continue e non negative:
+
+\[
 x_1, x_2 \in \mathbb{R}_{\geq 0}
-\end{equation}
+\]
 
 \subsubsection{Funzione obiettivo}
-\begin{equation}
+
+Massimizzare il profitto totale:
+\[
 \max z(x) = 540x_1 + 590x_2
-\end{equation}
+\]
 
 \subsubsection{Vincoli di capacità}
 \[
@@ -70,7 +166,6 @@ x_1, x_2 \geq 0 \quad &\text{(Non negatività)}
 \]
 
 \section{Esempio di pianificazione della produzione - 2}
-
 \subsection{Descrizione}
 L'obiettivo è massimizzare il profitto settimanale, calcolato come differenza tra ricavi di vendita e costi di produzione, per tre tipi di argilla: A, B e C.
 
@@ -99,44 +194,45 @@ L'obiettivo è massimizzare il profitto settimanale, calcolato come differenza t
 \end{table}
 
 \subsection{Formulazione matematica}
-
 \subsubsection{Variabili decisionali}
+
 Siano:
 \begin{itemize}
     \item $x_{iA}$ : quantità di argilla A prodotta nello stabilimento $i$
     \item $x_{iB}$ : quantità di argilla B prodotta nello stabilimento $i$
     \item $x_{iC}$ : quantità di argilla C prodotta nello stabilimento $i$
 \end{itemize}
-\begin{equation}
+
+Quindi, siano:
+\[
 x_{iA}, x_{iB}, x_{iC} \in \mathbb{R}_{\geq 0}, \quad \text{per } i=1,2,3
-\end{equation}
+\]
 
 \subsubsection{Funzione obiettivo}
+Massimizzare il profitto, ovvero la differenza tra ricavi e costi, cioè:
 \begin{align*}
-\max z =\; & 18(x_{1A} + x_{2A} + x_{3A}) + 21(x_{1B} + x_{2B} + x_{3B}) + 24(x_{1C} + x_{2C} + x_{3C}) \\
-& - \Big[ 3.52(0.18x_{1A} + 0.21x_{1B} + 0.24x_{1C}) \\
-& \quad +\, 4.18(0.20x_{2A} + 0.18x_{2B} + 0.21x_{2C}) \\
-& \quad +\, 3.98(0.12x_{3A} + 0.22x_{3B} + 0.23x_{3C}) \Big]
+\max z = & \ 18(x_{1A} + x_{2A} + x_{3A}) + 21(x_{1B} + x_{2B} + x_{3B}) + 24(x_{1C} + x_{2C} + x_{3C}) \\
+& - \left[ 3.52(0.18x_{1A} + 0.21x_{1B} + 0.24x_{1C}) \right. \\
+& \left. + 4.18(0.20x_{2A} + 0.18x_{2B} + 0.21x_{2C}) \right. \\
+& \left. + 3.98(0.12x_{3A} + 0.22x_{3B} + 0.23x_{3C}) \right]
 \end{align*}
 
 \subsubsection{Vincoli di capacità}
-\[
+\begin{align}
 \begin{cases}
-0.18x_{1A}+0.21x_{1B}+0.24x_{1C} \leq 90, \\
-0.20x_{2A}+0.18x_{2B}+0.21x_{2C} \leq 85, \\
-0.12x_{3A}+0.22x_{3B}+0.23x_{3C} \leq 80.
+    0.18x_{1A}+0.21x_{1B}+0.24x_{1C} \leq 90 \\
+    0.20x_{2A}+0.18x_{2B}+0.21x_{2C} \leq 85 \\
+    0.12x_{3A}+0.22x_{3B}+0.23x_{3C} \leq 80
 \end{cases}
-\]
+\end{align}
 
 \subsubsection{Vincoli di proporzione sulla produzione di argilla A}
 \begin{align}
-x_{1A}+x_{2A}+x_{3A} &\geq 0.5 \cdot T, \\
-x_{1A}+x_{2A}+x_{3A} &\leq 0.7 \cdot T,
+x_{1A}+x_{2A}+x_{3A} &\geq 0.5 \cdot \sum_{i=1}^{3}(x_{iA}+x_{iB}+x_{iC}) \\
+x_{1A}+x_{2A}+x_{3A} &\leq 0.7 \cdot \sum_{i=1}^{3}(x_{iA}+x_{iB}+x_{iC})
 \end{align}
-dove: 
-\[
-T = \sum_{i=1}^{3}(x_{iA}+x_{iB}+x_{iC})
-\]
+
+Dove: $T = \sum_{i=1}^{3}(x_{iA}+x_{iB}+x_{iC})$
 
 \section{Mix di produzione - Esempio 3}
 
@@ -155,6 +251,7 @@ Determinare le quantità ottimali da produrre per massimizzare il profitto total
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|c|c|c|c|c|c|}
+
 \hline
 Prodotto      & P1 & P2 & P3 & P4 & P5 & P6 \\ \hline
 Profitto/unità & 30 & 45 & 24 & 26 & 24 & 33 \\ \hline
@@ -165,6 +262,7 @@ Profitto/unità & 30 & 45 & 24 & 26 & 24 & 33 \\ \hline
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|c|c|c|c|c|c|c|}
+
 \hline
 Materia Prima & P1 & P2 & P3 & P4 & P5 & P6 & Disponibilità \\ \hline
 Acciaio     & 1  & 4  & 0  & 4  & 2  & 0  & $\leq 1200$ \\ \hline
@@ -179,17 +277,17 @@ Vetro       & 2  & 4  & 2  & 2  & 2  & 4  & $\leq 1360$ \\ \hline
 \subsection{Formulazione matematica}
 
 \subsubsection{Variabili decisionali}
-\[
+\[ 
 x_i \in \mathbb{R}_{\geq 0}, \quad \text{per } i = 1, \dots, n
 \]
 
 \subsubsection{Funzione obiettivo}
-\[
+\[ 
 \max \sum_{i=1}^{n} c_i x_i
 \]
 
 \subsubsection{Vincoli}
-\[
+\[ 
 \sum_{i=1}^{n} a_{ji} x_i \leq b_j,\quad j = 1, \dots, m,\qquad x_i \geq 0, \quad i = 1, \dots, n.
 \]
 
@@ -205,9 +303,9 @@ L'istanza specifica diventa:
 & x_1,\, x_2,\, x_3,\, x_4,\, x_5,\, x_6 \geq 0.
 \end{align}
 
-\section{Problema della dieta - Esempio 4}
+\section{\textbf{\textit{Problema della dieta - Esempio 4}}}
 
-\subsection{Descrizione}
+\subsection{\textbf{\textit{Descrizione}}}
 Determinare le quantità ottimali di diversi alimenti per una dieta giornaliera che:
 \begin{itemize}
     \item Soddisfi i requisiti nutrizionali minimi
@@ -218,6 +316,7 @@ Determinare le quantità ottimali di diversi alimenti per una dieta giornaliera 
 \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
+
 \hline
 Alimento & G1 & G2 & G3 & G4 \\ \hline
 Costo/unità & 35 & 50 & 80 & 95 \\ \hline
@@ -228,6 +327,7 @@ Costo/unità & 35 & 50 & 80 & 95 \\ \hline
 \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|}
+
 \hline
 Nutriente & G1 & G2 & G3 & G4 & Fabbisogno minimo \\
 \hline
@@ -244,17 +344,17 @@ C & 2.3 & 5.6 & 11.1 & 1.3 & $\geq 5$ \\
 \subsection{Formulazione matematica}
 
 \subsubsection{Variabili decisionali}
-\[
+\[ 
 x_i \in \mathbb{R}_{\geq 0}, \quad \text{per } i = 1, \dots, n
 \]
 
 \subsubsection{Funzione obiettivo}
-\[
+\[ 
 \min \sum_{i=1}^{n} c_i x_i
 \]
 
 \subsubsection{Vincoli}
-\[
+\[ 
 \sum_{i=1}^{n} a_{ji} x_i \geq b_j,\quad j = 1, \dots, m,\qquad x_i \geq 0, \quad i = 1, \dots, n.
 \]
 
@@ -268,9 +368,9 @@ L'istanza specifica è:
 & x_1, \, x_2, \, x_3, \, x_4 \geq 0.
 \end{align}
 
-\section{Problema della miscelazione - Esempio 5}
+\section{\textbf{\textit{Problema della miscelazione - Esempio 5}}}
 
-\subsection{Descrizione}
+\subsection{\textbf{\textit{Descrizione}}}
 Produrre 100 quintali di acciaio al minimo costo utilizzando una combinazione di rottami metallici con specifiche chimiche:
 \begin{itemize}
     \item Ferro: almeno 65\%
@@ -283,6 +383,7 @@ Produrre 100 quintali di acciaio al minimo costo utilizzando una combinazione di
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|c|c|c|c|c|c|}
+
 \hline
 \textbf{Componente} & \textbf{Rott. 1} & \textbf{Rott. 2} & \textbf{Rott. 3} & \textbf{Rott. 4} & \textbf{Rott. 5} & \textbf{Rott. 6} \\
 \hline
@@ -306,44 +407,44 @@ Costo [€/q]      & 50  & 100 & 80  & 85  & 92  & 115 \\
 
 \subsubsection{Variabili decisionali}
 Siano 
-\[
+\[ 
 x_i \in \mathbb{R}_{\geq 0}, \quad i=1,\dots,6,
 \]
 i quintali del rottame $i$-esimo utilizzati nella miscela.
 
 \subsubsection{Funzione obiettivo}
-\[
+\[ 
 \min z = 50x_1 + 100x_2 + 80x_3 + 85x_4 + 92x_5 + 115x_6
 \]
 
 \subsubsection{Vincoli}
 Quantità totale:
-\[
+\[ 
 x_1+x_2+x_3+x_4+x_5+x_6 = 100.
 \]
 
 Percentuale di ferro:
-\[
+\[ 
 93x_1+76x_2+74x_3+65x_4+72x_5+68x_6 \geq 65\cdot 100.
 \]
 
 Percentuale di nichel:
-\[
+\[ 
 5x_1+13x_2+11x_3+16x_4+6x_5+23x_6 \geq 18\cdot 100.
 \]
 
 Percentuale di cromo:
-\[
+\[ 
 0x_1+11x_2+12x_3+14x_4+20x_5+8x_6 \geq 10\cdot 100.
 \]
 
 Percentuale di impurità:
-\[
+\[ 
 2x_1+0x_2+3x_3+5x_4+2x_5+1x_6 \leq 1\cdot 100.
 \]
 
 Vincoli di disponibilità:
-\[
+\[ 
 \begin{aligned}
 x_1 &\leq 30, \\
 x_2 &\leq 90, \\
@@ -354,9 +455,9 @@ x_6 &\leq 50.
 \end{aligned}
 \]
  
-\section{Problema di miscelazione - Esempio 6}
+\section{\textbf{\textit{Problema di miscelazione - Esempio 6}}}
 
-\subsection{Descrizione}
+\subsection{\textbf{\textit{Descrizione}}}
 Un'azienda produce due tipi di fertilizzanti, A e B, mescolando due composti chimici; l'obiettivo è minimizzare il costo totale rispettando requisiti qualitativi e quantitativi:
 \begin{itemize}
     \item Fertilizzante A $\geq$ 40000 kg (25\% azoto, 10\% ferro)
@@ -367,6 +468,7 @@ Un'azienda produce due tipi di fertilizzanti, A e B, mescolando due composti chi
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|c|c|c|c|}
+
 \hline
 \textbf{Composto} & \textbf{Azoto [\%]} & \textbf{Ferro [\%]} & \textbf{Quantità max [kg]} & \textbf{Costo [€/kg]} \\
 \hline
@@ -389,13 +491,13 @@ Composto 2       & 70                 & 6                & 25000                
 \end{itemize}
 
 \subsubsection{Funzione obiettivo}
-\[
+\[ 
 \min z = 3x_{1A}+4x_{2A}+3x_{1B}+4x_{2B}
 \]
 
 \subsubsection{Vincoli}
 Requisiti di qualità per il fertilizzante A:
-\[
+\[ 
 \begin{aligned}
 0.5x_{1A}+0.7x_{2A} &\geq 0.25(x_{1A}+x_{2A})\quad\Rightarrow\quad 0.5x_{1A}+0.7x_{2A}\geq 10000, \\
 0.4x_{1A}+0.06x_{2A} &\geq 0.10(x_{1A}+x_{2A})\quad\Rightarrow\quad 0.4x_{1A}+0.06x_{2A}\geq 4000.
@@ -403,7 +505,7 @@ Requisiti di qualità per il fertilizzante A:
 \]
 
 Requisiti di qualità per il fertilizzante B:
-\[
+\[ 
 \begin{aligned}
 0.5x_{1B}+0.7x_{2B} &\geq 0.20(x_{1B}+x_{2B})\quad\Rightarrow\quad 0.5x_{1B}+0.7x_{2B}\geq 0.20\cdot50000=10000, \\
 0.4x_{1B}+0.06x_{2B} &\geq 0.16(x_{1B}+x_{2B})\quad\Rightarrow\quad 0.4x_{1B}+0.06x_{2B}\geq 8000.
@@ -411,17 +513,17 @@ Requisiti di qualità per il fertilizzante B:
 \]
 
 Vincoli sulla disponibilità dei composti:
-\[
+\[ 
 x_{1A}+x_{1B}\leq 30000,\quad x_{2A}+x_{2B}\leq 25000.
 \]
 
 Vincoli di non negatività:
-\[
+\[ 
 x_{1A},\, x_{2A},\, x_{1B},\, x_{2B}\geq 0.
 \]
 
 \subsection{Formulazione generale}
-\[
+\[ 
 \begin{aligned}
 \min \quad & 3x_{1A}+4x_{2A}+3x_{1B}+4x_{2B} \\
 \text{soggetto a}\quad 
@@ -457,7 +559,7 @@ L'obiettivo è determinare quanto produrre in ciascun periodo per soddisfare la 
 \subsection{Equazioni di bilanciamento}
 La quantità disponibile in ogni periodo è data dalla somma tra lo stock iniziale e la produzione. 
 Questa quantità deve coprire la domanda e lasciare eventualmente un residuo da stoccare:
-\[
+\[ 
 I_{t-1} + x_t = d_t + I_t, \quad \text{per } t = 1, \dots, T
 \]
 
@@ -468,19 +570,19 @@ I_{t-1} + x_t = d_t + I_t, \quad \text{per } t = 1, \dots, T
 
 \subsection{Funzione obiettivo}
 Minimizzare il costo totale di produzione e stoccaggio:
-\[
+\[ 
 \min \sum_{t=1}^{T} \left( c_t x_t + h_t I_t \right)
 \]
 
 \subsection{Vincoli}
 
 Equazioni di bilanciamento:
-\[
+\[ 
 I_{t-1} + x_t = d_t + I_t, \quad \text{per } t = 1, \dots, T
 \]
 
 Vincoli di non negatività:
-\[
+\[ 
 x_t \geq 0, \quad I_t \geq 0, \quad \text{per } t = 1, \dots, T
 \]
 
@@ -490,12 +592,12 @@ x_t \geq 0, \quad I_t \geq 0, \quad \text{per } t = 1, \dots, T
     \item Capacità massima di stoccaggio in ogni periodo $I_t \leq S_t$
 \end{itemize}
 
-\[
+\[ 
 x_t \leq X_t, \quad I_t \leq S_t, \quad \text{per alcuni } t \in \{1, \dots, T\}
 \]
 
 \subsection{Formulazione generale}
-\[
+\[ 
 \begin{aligned}
 \min \quad & \sum_{t=1}^{T} \left( c_t x_t + h_t I_t \right) \\
 \text{soggetto a} \quad 
@@ -527,6 +629,7 @@ solo stabilimento, e le quantità richieste sono note per ciascun periodo.
 \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
+
 \hline
 Periodo & Domanda $d_t$ & Capacità $C_t$ & Costo produzione $c_t$ [€/unità] & Costo stoccaggio $h_t$ [€/unità] \\
 \hline
@@ -550,13 +653,13 @@ Siano:
 \end{itemize}
 
 \subsubsection{Funzione obiettivo}
-\[
+\[ 
 \min z(x, I) = 12x_1 + 14x_2 + 16x_3 + 1.2I_1 + 1.1I_2 + 0.9I_3
 \]
 
 \subsubsection{Vincoli}
 Equazioni di bilanciamento (derivate da $I_{t-1}+x_t=d_t+I_t$):
-\[
+\[ 
 \begin{aligned}
 x_1 - I_1 &= 170 \\
 x_2 + I_1 - I_2 &= 290 \\
@@ -573,7 +676,7 @@ I_2 + x_3 &= d_3 + I_3 \Rightarrow I_2 + x_3 = 250 + I_3 \Rightarrow x_3 + I_2 -
 \end{align*}
 
 Vincoli di capacità produttiva:
-\[
+\[ 
 \begin{aligned}
 x_1 &\leq 250 \\
 x_2 &\leq 220 \\
@@ -582,12 +685,12 @@ x_3 &\leq 280
 \]
 
 Vincoli di non negatività:
-\[
+\[ 
 x_t \geq 0, \quad I_t \geq 0, \quad \text{per } t = 1, 2, 3
 \]
 
 \subsection{Formulazione generale}
-\[
+\[ 
 \begin{aligned}
 \min \quad & 12x_1 + 14x_2 + 16x_3 + 1.2I_1 + 1.1I_2 + 0.9I_3 \\
 \text{soggetto a} \quad 
@@ -601,66 +704,66 @@ x_t \geq 0, \quad I_t \geq 0, \quad \text{per } t = 1, 2, 3
 \end{aligned}
 \]
 
-\section{Problema del trasporto}
-\subsection{Descrizione del problema}
-Il problema del trasporto è un classico modello di ottimizzazione lineare 
-che riguarda la distribuzione ottimale di beni da un insieme di fornitori 
-a un insieme di clienti, minimizzando i costi di trasporto.
+\section{\textbf{\textit{Problema del trasporto}}}
+\subsection{\textbf{\textit{Descrizione del problema}}}
+Il \textbf{\textit{problema del trasporto}} è un classico modello di \textbf{\textit{ottimizzazione lineare}} 
+che riguarda la \textbf{\textit{distribuzione ottimale di beni}} da un insieme di fornitori 
+a un insieme di clienti, \textbf{\textit{minimizzando i costi di trasporto}}.
 
-\subsection{Dati del problema}
+\subsection{\textbf{\textit{Dati del problema}}}
 \begin{itemize}
-    \item $n$ fornitori, ciascuno con una capacità massima $a_i$
-    \item $m$ clienti, ciascuno con una domanda minima $b_j$
-    \item $c_{ij}$ come costo di trasporto unitario da ogni fornitore a ogni cliente
+    \item $n$ \textbf{\textit{fornitori}}, ciascuno con una capacità massima $a_i$
+    \item $m$ \textbf{\textit{clienti}}, ciascuno con una domanda minima $b_j$
+    \item $c_{ij}$ come \textbf{\textit{costo di trasporto unitario}} da ogni fornitore a ogni cliente
 \end{itemize}
 
-\subsection{Ipotesi di ammissibilità}
-Il problema ammette una soluzione solo se la quantità totale disponibile 
-è almeno pari alla domanda totale:
+\subsection{\textbf{\textit{Ipotesi di ammissibilità}}}
+Il problema ammette una soluzione solo se la \textbf{\textit{quantità totale disponibile}} 
+è almeno pari alla \textbf{\textit{domanda totale}}:
 \[
-\sum_{i=1}^{n} a_i \geq \sum_{j=1}^{m} b_j
+\underline{\sum_{i=1}^{n} a_i \geq \sum_{j=1}^{m} b_j}
 \]
 
 Se tutti i fornitori sono collegati a tutti i clienti, questa condizione 
 è sufficiente per garantire l'esistenza di una soluzione ammissibile.
 
-\subsection{Formulazione matematica}
-\subsubsection{Variabili decisionali}
-Siano $x_{ij}$ le quantità da trasportare dal fornitore $i$ al cliente $j$.
+\subsection{\textbf{\textit{Formulazione matematica}}}
+\subsubsection{\textbf{\textit{Variabili decisionali}}}
+Siano $x_{ij}$ le \textbf{\textit{quantità da trasportare}} dal fornitore $i$ al cliente $j$.
 \[
-x_{ij} \in \mathbb{R}_{\geq 0}, \quad \text{per } i = 1, \dots, n; \ j = 1, \dots, m
+x_{ij} \in \mathbb{R}_{\geq 0}, \quad \text{per } i = 1, \dots, n;\ j = 1, \dots, m
 \]
 
-\subsubsection{Funzione obiettivo}
-Minimmizzare il costo totale di trasporto:
+\subsubsection{\textbf{\textit{Funzione obiettivo}}}
+\textbf{\textit{Minimizzare il costo totale di trasporto}}:
 \[
 \min \sum_{i=1}^{n} \sum_{j=1}^{m} c_{ij} x_{ij}
 \]
 
-\subsubsection{Vincoli}
-Capacità dei fornitori: ogni fornitore non può spedire più della propria disponibilità:
+\subsubsection{\textbf{\textit{Vincoli}}}
+\textbf{\textit{Capacità dei fornitori}}: ogni fornitore non può spedire più della propria disponibilità:
 \[
 \sum_{j=1}^{m} x_{ij} \leq a_i, \quad \text{per } i = 1, \dots, n
 \]
 
-Domanda del clienti: ogni cliente deve ricevere almeno la quantità richiesta:
+\textbf{\textit{Domanda dei clienti}}: ogni cliente deve ricevere almeno la quantità richiesta:
 \[
 \sum_{i=1}^{n} x_{ij} \geq b_j, \quad \text{per } j = 1, \dots, m
 \]
 
-Non negatività:
+\textbf{\textit{Non negatività}}:
 \[
-x_{ij} \geq 0, \quad \text{per } i = 1, \dots, n; \ j = 1, \dots, m
+x_{ij} \geq 0, \quad \text{per } i = 1, \dots, n;\ j = 1, \dots, m
 \]
 
-\subsection{Formulazione generale}
+\subsection{\textbf{\textit{Formulazione generale}}}
 \[
 \begin{aligned}
 \min \quad & \sum_{i=1}^{n} \sum_{j=1}^{m} c_{ij} x_{ij} \\
 \text{soggetto a} \quad 
 & \sum_{j=1}^{m} x_{ij} \leq a_i, \quad i = 1, \dots, n \\
 & \sum_{i=1}^{n} x_{ij} \geq b_j, \quad j = 1, \dots, m \\
-& x_{ij} \geq 0, \quad i = 1, \dots, n; \ j = 1, \dots, m
+& x_{ij} \geq 0, \quad i = 1, \dots, n;\ j = 1, \dots, m
 \end{aligned}
 \]
 
@@ -697,29 +800,29 @@ Nella rappresentazione grafica sono utili i concetti di:
 \subsection{Formulazione matematica}
 \subsubsection{Funzione obiettivo}
 Minimizzare il makespan:
-\[
+\[ 
 \min \max_{i=1,\dots,n} \{ t_i + p_i \}
 \]
 
 \subsubsection{Vincoli}
 Vincoli di precedenza: un'attività può iniziare solo dopo che tutte le sue attività precedenti sono state completate:
-\[
+\[ 
 t_i \geq t_j + p_j \quad \forall i = 1,\dots,n,\ \forall j \in \text{prec}(i)
 \]
 
 Vincoli di non negatività: il tempo di inizio di ogni attività deve essere maggiore o uguale a zero:
-\[
+\[ 
 t_i \geq 0 \quad \forall i = 1,\dots,n
 \]
 
 \subsubsection{Linearizzazione del problema}
 Per rendere il problema più trattabile computazionalmente, possiamo introdurre una variabile ausiliaria $T$ che rappresenta il makespan:
-\[
+\[ 
 \min T
 \]
 
 Soggetto a:
-\[
+\[ 
 \begin{aligned}
 T \geq t_i + p_i \quad \forall i = 1,\dots,n
 t_i \geq t_j + p_j \quad \forall i = 1,\dots,n,\ \forall j \in \text{prec}(i)
@@ -749,7 +852,7 @@ L'obiettivo è trovare il tempo di inizio al più presto per ogni attività,
 minimizzando la somma dei tempi di inizio delle attività.
 
 Il modello di programmazione lineare è il seguente:
-\[
+\[ 
 \min \sum_{i=1}^n t_i
 \]
 
@@ -771,7 +874,7 @@ massimizzando la somma dei tempi di inizio delle attività senza ritardare il
 completamento del progetto.
 
 Il modello di programmazione lineare è il seguente:
-\[
+\[ 
 \max \sum_{i=1}^n t_i
 \]
 
@@ -789,7 +892,7 @@ Nei vincoli abbiamo:
 
 \subsection{Attività critiche}
 Un'attività è critica se:
-\[
+\[ 
 EST_i = LST_i
 \]
 

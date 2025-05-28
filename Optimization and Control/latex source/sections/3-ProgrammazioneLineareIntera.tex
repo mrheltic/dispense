@@ -1,24 +1,22 @@
 \section{Programmazione Lineare Intera}
 
 \subsection{Introduzione}
-La programmazione lineare intera (PLI) è una branca della programmazione 
-matematica che si occupa di problemi di ottimizzazione in cui 
-alcune o tutte le variabili decisionali sono vincolate a essere 
-numeri interi (inclusi valori binari, che possono essere 0 o 1).
+La \textbf{\textit{programmazione lineare intera (PLI)}} è una branca della \textbf{\textit{programmazione matematica}} che si occupa di problemi di ottimizzazione in cui 
+\textbf{\textit{alcune o tutte le variabili decisionali sono vincolate a essere numeri interi}} (inclusi valori binari, che possono essere 0 o 1).
 
 Tipologie di PLI:
 \begin{itemize}
-    \item PI pura: tutte le variabili decisionali sono intere o binarie
-    \item PI mista: alcune variabili sono intere o binarie, altre sono continue
+    \item \textbf{\textit{PI pura}}: tutte le variabili decisionali sono intere o binarie
+    \item \textbf{\textit{PI mista}}: alcune variabili sono intere o binarie, altre sono continue
 \end{itemize}
 
 La PI è particolarmente utile per modellare problemi decisionali in cui:
 \begin{itemize}
-    \item Le variabili rappresentano quantità indivisibili (es. un numero di macchine, persone o oggetti)
-    \item È necessario scegliere tra un insieme finito di alternative (es. accendere o spegnere una macchina, selezionare un percorso)
+    \item Le variabili rappresentano \textbf{\textit{quantità indivisibili}} (es. un numero di macchine, persone o oggetti)
+    \item È necessario scegliere tra un \textbf{\textit{insieme finito di alternative}} (es. accendere o spegnere una macchina, selezionare un percorso)
 \end{itemize}
 
-NB.: In alcuni casi, il vincolo di interezza può essere rilassato se 
+\underline{\textbf{NB.:}} In alcuni casi, il vincolo di interezza può essere rilassato se 
 l'arrotondamento della soluzione continua non compromette significativamente:
 \begin{itemize}
     \item Il rispetto dei vincoli del problema
@@ -26,17 +24,17 @@ l'arrotondamento della soluzione continua non compromette significativamente:
 \end{itemize}
 
 \subsection{Modelli di Taglio Ottimo}
-I modelli di taglio ottimo sono un'applicazione classica della PI. 
-L'obiettivo è minimizzare lo spreco (sfrido) derivante dal taglio dei 
+I \textbf{\textit{modelli di taglio ottimo}} sono un'applicazione classica della PI. 
+L'obiettivo è \textbf{\textit{minimizzare lo spreco (sfrido)}} derivante dal taglio dei 
 materiali (come stoffa, pelle, lamiera, ecc.) in pezzi di dimensioni più piccole.
 
 \subsection{Descrizione del Problema}
 Il problema di taglio ottimo può essere descritto come segue:
 \begin{itemize}
-    \item Si parte da moduli standard di lunghezza $D$.
+    \item Si parte da \textbf{\textit{moduli standard}} di lunghezza $D$.
     \item Si devono ottenere moduli più piccoli di lunghezza $d_i$ con $i = 1, \ldots, m$.
     \item Per ogni tipo $i$, si richiede una quantità $r_i$ di moduli di lunghezza $d_i$.
-    \item Esistono $n$ schemi di taglio diversi, ciascuno dei quali specifica come tagliare un modulo standard
+    \item Esistono $n$ \textbf{\textit{schemi di taglio}} diversi, ciascuno dei quali specifica come tagliare un modulo standard
 \end{itemize}
 
 I parametri del problema sono:
@@ -51,14 +49,14 @@ I parametri del problema sono:
 
 \subsection{Formulazione del Modello di Programmazione Lineare Intera}
 \subsubsection{Funzione Obiettivo}
-L'obiettivo è minimizzare lo spreco totale di materiale, che può essere espresso come:
+L'obiettivo è \textbf{\textit{minimizzare lo spreco totale di materiale}}, che può essere espresso come:
 \[
 \min z(x) = \sum_{j=1}^{n} x_j
 \]
 
 \subsubsection{Variabili decisionali}
 \begin{itemize}
-    \item $x_j \in \mathbb{Z}_{\geq 0}$: numero di moduli standard tagliati secondo lo schema $j$.
+    \item $x_j \in \mathbb{Z}_{\geq 0}$: \textbf{\textit{numero di moduli standard tagliati secondo lo schema $j$}}.
 \end{itemize}
 
 \subsubsection{Formulazione matematica}
@@ -66,15 +64,15 @@ L'obiettivo è minimizzare lo spreco totale di materiale, che può essere espres
 \begin{aligned}
 \min \quad & z(x) = \sum_{j=1}^{n} x_j \\
 \text{soggetto a} \quad & \sum_{j=1}^{n} a_{ij} x_j \geq r_i \quad \text{per } i = 1, \dots, m \\
-& x_j \in \mathbb{Z}_{\geq 0} \quad \text{(variabile intere non negativa)} \quad \text{per } j = 1, \dots, n
+& x_j \in \mathbb{Z}_{\geq 0} \quad \text{(variabile intera non negativa)} \quad \text{per } j = 1, \dots, n
 \end{aligned}
 \]
 
 \section{Problema di Taglio Ottimo: Esempio 1}
 \subsection{Descrizione del problema}
 
-Un'azienda prroduce fogli di lamiera di zinco di dimensioni 
-$10 x 1 m^2$. Questi fogli vengono tagliati in larghezza fissa (1 metro), 
+Un'azienda produce fogli di lamiera di zinco di dimensioni 
+$10 \times 1\, m^2$. Questi fogli vengono tagliati in larghezza fissa (1 metro), 
 ma con lunghezze variabili per soddisfare la domanda mensile di diversi formati.
 
 \subsection{Dati del problema}
@@ -83,7 +81,7 @@ La tabella seguente riporta:
 \begin{itemize}
     \item Le lunghezze richieste
     \item La domanda mensile per ciascuna lunghezza
-    \item I 5 schemi di taglio disponibile (ognuno specifica quante unità di ciascun tipo si ottengono da un foglio standard)
+    \item I 5 schemi di taglio disponibili (ognuno specifica quante unità di ciascun tipo si ottengono da un foglio standard)
 \end{itemize}
 
 \begin{table}[htbp]
@@ -104,18 +102,18 @@ La tabella seguente riporta:
 
 \subsection{Formulazione matematica}
 \subsubsection{Variabili decisionali}
-Sia $x_j$ il numero di fogli standard tagliati secondo lo schema $j$, con $j = 1, \ldots, 5$.
+Sia $x_j$ il \textbf{\textit{numero di fogli standard tagliati secondo lo schema $j$}}, con $j = 1, \ldots, 5$.
 
 
 \subsubsection{Funzione obiettivo}
-L'obiettivo è minimizzare il numero totale di fogli utilizzati:
+L'obiettivo è \textbf{\textit{minimizzare il numero totale di fogli utilizzati}}:
 \[
 \min z(x) = x_1 + x_2 + x_3 + x_4 + x_5
 \]
 
 
 \subsubsection{Vincoli}
-Tra i vincoli abbiamo inizialmente quelli di domanda, che garantiscono che la quantità richiesta di ogni lunghezza sia soddisfatta:
+Tra i vincoli abbiamo inizialmente quelli di \textbf{\textit{domanda}}, che garantiscono che la quantità richiesta di ogni lunghezza sia soddisfatta:
 \[
 \begin{aligned}
 2x_1 + x_4 + x_5 &\geq 23 \quad &\text{(lunghezza 3.0 m)} \\
@@ -126,12 +124,12 @@ x_1 + 2x_2 + x_3 + 2x_5 &\geq 35 \quad &\text{(lunghezza 1.5 m)}
 \end{aligned}
 \]
 
-Successivamente, dobbiamo aggiungere i vincoli di non negatività e interezza:
+Successivamente, dobbiamo aggiungere i vincoli di \textbf{\textit{non negatività e interezza}}:
 \[
 x_j \in \mathbb{Z}_{\geq 0} \quad \text{per } j = 1, \dots, 5
 \]
 
-\subsection{Formmulazione completa del modello}
+\subsection{Formulazione completa del modello}
 \[
 \begin{aligned}
 \min \quad & z(x) = x_1 + x_2 + x_3 + x_4 + x_5 \\
@@ -146,39 +144,37 @@ x_j \in \mathbb{Z}_{\geq 0} \quad \text{per } j = 1, \dots, 5
 
 \section{Modello dello zaino (Knapsack Problem)}
 
-Il nodello dello zaino è un classico problema di Programmazione Lineare 
-Intera Binaria, molto utilizzato per rappresentare situazioni decisionali 
+Il \textbf{\textit{modello dello zaino}} è un classico problema di \textbf{\textit{Programmazione Lineare Intera Binaria}}, molto utilizzato per rappresentare situazioni decisionali 
 in cui si devono selezionare elementi da un insieme, rispettando un 
 vincolo di capacità.
 
 \subsection{Descrizione del problema}
-Dato un insieme di $n$ oggetti, clascuno caratterizzato da:
+Dato un insieme di $n$ oggetti, ciascuno caratterizzato da:
 \begin{itemize}
-    \item Un valore $c_j$ (es. profitto, utilità)
-    \item Un peso $p_i$ (es. spazio, costo)
+    \item Un \textbf{\textit{valore}} $c_j$ (es. profitto, utilità)
+    \item Un \textbf{\textit{peso}} $p_j$ (es. spazio, costo)
 \end{itemize}
 
-e una capacità massima $b$ dello zaino, l'obiettivo è massimizzare il 
-valore degli oggetti selezionati, senza superare la capacità disponibile.
+e una \textbf{\textit{capacità massima}} $b$ dello zaino, l'obiettivo è \textbf{\textit{massimizzare il valore degli oggetti selezionati}}, senza superare la capacità disponibile.
 
 \subsection{Formulazione matematica}
 \subsubsection{Variabili decisionali}
 
-Sia $x_j$ una variabile binaria che indica se l'oggetto $j$ è selezionato ($x_j = 1$) o meno ($x_j = 0$).
+Sia $x_j$ una \textbf{\textit{variabile binaria}} che indica se l'oggetto $j$ è selezionato ($x_j = 1$) o meno ($x_j = 0$).
 
 \subsubsection{Funzione obiettivo}
-L'obiettivo è massimizzare il valore totale degli oggetti selezionati:
+L'obiettivo è \textbf{\textit{massimizzare il valore totale degli oggetti selezionati}}:
 \[
 \max z(x) = \sum_{j=1}^{n} c_j x_j
 \]
 
 \subsubsection{Vincoli}
-Il vincolo principale è che il peso totale degli oggetti selezionati non deve superare la capacità dello zaino:
+Il vincolo principale è che il \textbf{\textit{peso totale degli oggetti selezionati non deve superare la capacità dello zaino}}:
 \[
 \sum_{j=1}^{n} p_j x_j \leq b
 \]
 
-Inoltre, le variabili devono essere binarie:
+Inoltre, le variabili devono essere \textbf{\textit{binarie}}:
 \[
 x_j \in \{0, 1\} \quad \text{per } j = 1, \ldots, n
 \]
@@ -202,9 +198,9 @@ x_j \in \{0, 1\} \quad \text{per } j = 1, \ldots, n
 \section{Selezione di Scatole per il trasporto - Esempio 2}
 \subsection{Descrizione del problema}
 
-Un'azienda deve caricare un furgone con capacità massima di 10 quintali 
-(1000 kg). Sono disponibili 12 scatole isotermiche, ciascuna con un peso e un valore 
-economico. L'obiettivo è massimizzare il valore totale delle scatole caricate, 
+Un'azienda deve caricare un furgone con \textbf{\textit{capacità massima di 10 quintali}} 
+(\textbf{\textit{1000 kg}}). Sono disponibili \textbf{\textit{12 scatole isotermiche}}, ciascuna con un peso e un valore 
+economico. L'obiettivo è \textbf{\textit{massimizzare il valore totale delle scatole caricate}}, 
 senza superare la capacità massima del furgone.
 
 \subsection{Dati del problema}
