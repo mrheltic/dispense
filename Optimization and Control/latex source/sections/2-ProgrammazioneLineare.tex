@@ -559,7 +559,7 @@ x_t \geq 0, \quad I_t \geq 0, \quad \text{per } t = 1, \dots, T
 
 (Opzionali) Vincoli di capacità produttiva:
 \begin{itemize}
-    \item Capacità massima di produzione in ogni periodo $x_t \leq X_t$
+    \item Capacità massima di produzione in ogni periodo $x_t \leq u_t$
     \item Capacità massima di stoccaggio in ogni periodo $I_t \leq S_t$
 \end{itemize}
 
@@ -574,7 +574,7 @@ x_t \leq X_t, \quad I_t \leq S_t, \quad \text{per alcuni } t \in \{1, \dots, T\}
 \text{soggetto a} \quad 
 & I_{t-1} + x_t = d_t + I_t, \quad t = 1, \dots, T \\
 & x_t \geq 0, \quad I_t \geq 0, \quad t = 1, \dots, T \\
-& x_t \leq X_t, \quad I_t \leq S_t, \quad \text{(se applicabile)}
+& x_t \leq u_t, \quad I_t \leq S_t, \quad \text{(se applicabile)}
 \end{aligned}
 \]
 
@@ -675,20 +675,20 @@ x_t \geq 0, \quad I_t \geq 0, \quad \text{per } t = 1, 2, 3
 \end{aligned}
 \]
 
-\section{\textbf{\textit{Problema del trasporto}}}
-\subsection{\textbf{\textit{Descrizione del problema}}}
+\section{Problema del trasporto}
+\subsection{Descrizione del problema}
 Il \textbf{\textit{problema del trasporto}} è un classico modello di \textbf{\textit{ottimizzazione lineare}} 
 che riguarda la \textbf{\textit{distribuzione ottimale di beni}} da un insieme di fornitori 
 a un insieme di clienti, \textbf{\textit{minimizzando i costi di trasporto}}.
 
-\subsection{\textbf{\textit{Dati del problema}}}
+\subsection{Dati del problema}
 \begin{itemize}
     \item $n$ \textbf{\textit{fornitori}}, ciascuno con una capacità massima $a_i$
     \item $m$ \textbf{\textit{clienti}}, ciascuno con una domanda minima $b_j$
     \item $c_{ij}$ come \textbf{\textit{costo di trasporto unitario}} da ogni fornitore a ogni cliente
 \end{itemize}
 
-\subsection{\textbf{\textit{Ipotesi di ammissibilità}}}
+\subsection{Ipotesi di ammissibilità}
 Il problema ammette una soluzione solo se la \textbf{\textit{quantità totale disponibile}} 
 è almeno pari alla \textbf{\textit{domanda totale}}:
 \[
@@ -698,20 +698,20 @@ Il problema ammette una soluzione solo se la \textbf{\textit{quantità totale di
 Se tutti i fornitori sono collegati a tutti i clienti, questa condizione 
 è sufficiente per garantire l'esistenza di una soluzione ammissibile.
 
-\subsection{\textbf{\textit{Formulazione matematica}}}
-\subsubsection{\textbf{\textit{Variabili decisionali}}}
+\subsection{Formulazione matematica}
+\subsubsection{Variabili decisionali}
 Siano $x_{ij}$ le \textbf{\textit{quantità da trasportare}} dal fornitore $i$ al cliente $j$.
 \[
 x_{ij} \in \mathbb{R}_{\geq 0}, \quad \text{per } i = 1, \dots, n;\ j = 1, \dots, m
 \]
 
-\subsubsection{\textbf{\textit{Funzione obiettivo}}}
+\subsubsection{Funzione obiettivo}
 \textbf{\textit{Minimizzare il costo totale di trasporto}}:
 \[
 \min \sum_{i=1}^{n} \sum_{j=1}^{m} c_{ij} x_{ij}
 \]
 
-\subsubsection{\textbf{\textit{Vincoli}}}
+\subsubsection{Vincoli}
 \textbf{\textit{Capacità dei fornitori}}: ogni fornitore non può spedire più della propria disponibilità:
 \[
 \sum_{j=1}^{m} x_{ij} \leq a_i, \quad \text{per } i = 1, \dots, n
@@ -727,7 +727,7 @@ x_{ij} \in \mathbb{R}_{\geq 0}, \quad \text{per } i = 1, \dots, n;\ j = 1, \dots
 x_{ij} \geq 0, \quad \text{per } i = 1, \dots, n;\ j = 1, \dots, m
 \]
 
-\subsection{\textbf{\textit{Formulazione generale}}}
+\subsection{Formulazione generale}
 \[
 \begin{aligned}
 \min \quad & \sum_{i=1}^{n} \sum_{j=1}^{m} c_{ij} x_{ij} \\
@@ -737,6 +737,16 @@ x_{ij} \geq 0, \quad \text{per } i = 1, \dots, n;\ j = 1, \dots, m
 & x_{ij} \geq 0, \quad i = 1, \dots, n;\ j = 1, \dots, m
 \end{aligned}
 \]
+
+\subsection{Difficoltà del problema}
+Ci sono diverse tipologie di difficoltà:
+\begin{itemize}
+    \item Capacità massime per gli archi
+    \item Non tutti i fornitori sono collegati a tutti i destinatari
+    \item Il trasporto non avviene direttamente tra fornitore e destinatario ma attraverso dei centri di raccolta e distribuzione intermedi
+    \item Possibili perdite nel trasporto
+    \item Più prodotti da trasportare con vincoli di capacità comuni
+\end{itemize}
 
 \section{Schedulazione delle attività}
 \subsection{Descrizione del problema}
@@ -783,7 +793,7 @@ t_i \geq t_j + p_j \quad \forall i = 1,\dots,n,\ \forall j \in \text{prec}(i)
 
 Vincoli di non negatività: il tempo di inizio di ogni attività deve essere maggiore o uguale a zero:
 \[ 
-t_i \geq 0 \quad \forall i = 1,\dots,n
+t_i \geq 0 \quad i = 1,\dots,n
 \]
 
 \subsubsection{Linearizzazione del problema}
@@ -795,9 +805,9 @@ Per rendere il problema più trattabile computazionalmente, possiamo introdurre 
 Soggetto a:
 \[ 
 \begin{aligned}
-T \geq t_i + p_i \quad \forall i = 1,\dots,n
-t_i \geq t_j + p_j \quad \forall i = 1,\dots,n,\ \forall j \in \text{prec}(i)
-t_i \geq 0 \quad \forall i = 1,\dots,n
+& T \geq t_i + p_i \quad \forall i = 1,\dots,n \\
+& t_i \geq t_j + p_j \quad \forall i = 1,\dots,n,\ \forall j \in \text{prec}(i) \\
+& t_i \geq 0 \quad \forall i = 1,\dots,n
 \end{aligned}
 \]
 

@@ -1,6 +1,6 @@
-\section{Programmazione Lineare Intera}
+\chapter{Programmazione Lineare Intera}
 
-\subsection{Introduzione}
+\section{Introduzione}
 La \textbf{\textit{programmazione lineare intera (PLI)}} è una branca della \textbf{\textit{programmazione matematica}} che si occupa di problemi di ottimizzazione in cui 
 \textbf{\textit{alcune o tutte le variabili decisionali sono vincolate a essere numeri interi}} (inclusi valori binari, che possono essere 0 o 1).
 
@@ -23,7 +23,7 @@ l'arrotondamento della soluzione continua non compromette significativamente:
     \item Il valore della funzione obiettivo
 \end{itemize}
 
-\subsection{Modelli di Taglio Ottimo}
+\section{Modelli di Taglio Ottimo}
 I \textbf{\textit{modelli di taglio ottimo}} sono un'applicazione classica della PI. 
 L'obiettivo è \textbf{\textit{minimizzare lo spreco (sfrido)}} derivante dal taglio dei 
 materiali (come stoffa, pelle, lamiera, ecc.) in pezzi di dimensioni più piccole.
@@ -494,5 +494,157 @@ Il modello PIM binario è:
 & x_j \leq M_j y_j \quad \text{per } j = 1, \dots, n \\
 & x_j \geq 0 \quad \text{per } j = 1, \dots, n \\
 & y_j \in \{0, 1\} \quad \text{per } j = 1, \dots, n
+\end{aligned}
+\]
+
+\subsection{Attivazione ottimale di condizionatori - Esempio 6}
+\subsubsection{Descrizione del problema}
+Un'azienda deve decidere quali tra quattro climatizzatori deve attivare 
+per garantire un flusso d'aria sufficiente a coprire un volume di 3600 m³ con 
+15 ricambi d'aria all'ora, ovvero:
+\[
+\text{Flusso d'aria totale} \geq 3600 \times 15 = 54000 \text{ m³/h}
+\]
+
+\subsubsection{Dati del problema}
+Ogni climatizzatore ha:
+\begin{itemize}
+    \item Una portata d'aria oraria (in m³/h)
+    \item Un costo fisso di attivazione (€/h)
+    \item Un costo variabile di erogazione (€/(m³/h))
+\end{itemize}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Caratteristiche dei climatizzatori}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Climatizzatore} & \textbf{Portata (m³/h)} & \textbf{Costo fisso (€/h)} & \textbf{Costo variabile (€/m³/h)} \\
+        \hline
+        1 & 44.000 & 500 & 2,42 \\
+        2 & 48.000 & 450 & 2,64 \\
+        3 & 36.000 & 600 & 1,98 \\
+        4 & 51.000 & 580 & 2,80 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{Formulazione matematica}
+\paragraph{Variabili decisionali}
+Siano:
+\begin{itemize}
+    \item $x_j$: portata d'aria del climatizzatore $j$ (m³/h), con $j = 1, \ldots, 4$
+    \item $y_j$: variabile binaria che indica se il climatizzatore $j$ è attivo ($y_j = 1$) o meno ($y_j = 0$)
+\end{itemize}
+
+\paragraph{Funzione obiettivo}
+L'obiettivo è minimizzare il costo totale (fisso + variabile):
+\[
+\min z(x, y) = 2.42x_1 + 2.64x_2 + 1.98x_3 + 2.80x_4 + 500y_1 + 450y_2 + 600y_3 + 580y_4
+\]
+
+\paragraph{Vincoli}
+Il vincolo principale è garantire che la portata d'aria totale sia sufficiente:
+\[
+x_1 + x_2 + x_3 + x_4 \geq 54.000
+\]
+
+Inoltre ci sono dei vincoli di attivazione:
+\[
+\begin{aligned}
+x_1 &\leq 44.000 y_1 \\
+x_2 &\leq 48.000 y_2 \\
+x_3 &\leq 36.000 y_3 \\
+x_4 &\leq 51.000 y_4
+\end{aligned}
+\]
+
+Per ultimo i vincoli di non negatività e interezza:
+\[
+\begin{aligned}
+x_j &\geq 0 \quad \text{per } j = 1, \dots, 4 \\
+y_j &\in \{0, 1\} \quad \text{per } j = 1, \dots, 4
+\end{aligned}
+\]
+
+\subsubsection{Formulazione completa del modello}
+\[
+\begin{aligned}
+\min \quad & z(x, y) = 2.42x_1 + 2.64x_2 + 1.98x_3 + 2.80x_4 + 500y_1 + 450y_2 + 600y_3 + 580y_4 \\
+\text{soggetto a} \quad & x_1 + x_2 + x_3 + x_4 \geq 54.000 \\
+& x_1 \leq 44.000 y_1 \\
+& x_2 \leq 48.000 y_2 \\
+& x_3 \leq 36.000 y_3 \\
+& x_4 \leq 51.000 y_4 \\
+& x_j \geq 0 \quad \text{per } j = 1, \dots, 4 \\
+& y_j \in \{0, 1\} \quad \text{per } j = 1, \dots, 4
+\end{aligned}
+\]
+
+\section{Modelli di Localizzazione}
+I modelli di localizzazione sono strumenti quantitativi fondamentali 
+per la pianificazione territoriale di reti di servizio. L'obiettivo è 
+determinare dove localizzare centri di servizio (es. impianti produttivi, 
+centri di distribuzione, ospedali) in modo da:
+\begin{itemize}
+    \item Soddisfare la domanda distribuita su un'area geografica
+    \item Miminizzare una funzione di costo (es. costi di trasporto, operativi)
+\end{itemize}
+
+Queste decisioni di localizzazione sono:
+\begin{itemize}
+    \item Stragegiche e a lungo termine
+    \item Implicano investimenti significativi
+    \item Influenzano la struttura logistica e operativa dell'intera organizzazione
+\end{itemize}
+
+\section{Modello CPL - Capacited Plant Location}
+Ci concentriamo sul modello CPL (Capacited Plant Location), una delle 
+formulazioni più note e diffuse. In base alle ipotesi possiamo avere:
+\begin{itemize}
+    \item Monotipo: tutti i centri da localizzare sono dello stesso tipo
+    \item Discreto: l'insieme dei siti potenziali $I$ è noto e finito
+    \item Singolo prodotto: si considera un solo tipo di prodotto o servizio
+    \item Un livello: i flussi sono solo tra i siti da localizzare e i nodi successivi (clienti o punti vendita)
+\end{itemize}
+
+\subsection{Formulazione matematica}
+Il problema può essere rappresentato come un grafo bipartito orientato 
+$G = (I \cup J, A)$, dove:
+\begin{itemize}
+    \item $I$: insieme dei siti potenziali (impianti)
+    \item $J$: insieme dei nodi successivi (clienti o punti vendita)
+    \item $A = I \times J$: insieme degli archi che collegano i siti ai clienti
+\end{itemize}
+
+Tra i parametri del problema abbiamo:
+\begin{itemize}
+    \item $c_{ij}$: costo di trasporto unitario dal sito $i$ a $j$
+    \item $f_i$: costo fisso di attivazione del sito $i$
+    \item $d_j$: domanda del cliente $j \in J$
+    \item $q_i$: capacità massima del sito $i \in I$
+\end{itemize}
+
+\subsubsection{Variabili decisionali}
+Siano:
+\begin{itemize}
+    \item $x_{ij} \geq 0$: quantità trasportata dal sito $i$ al nodo $j$
+    \item $y_i \in \{0,1\}$: variabile binaria che indica se il sito $i$ è attivo ($y_i = 1$) o meno ($y_i = 0$)
+\end{itemize}
+
+\subsubsection{Funzione obiettivo}
+L'obiettivo è minimizzare il costo totale di trasporto e i costi fissi di attivazione:
+\[
+\min z(x, y) = \sum_{i \in I} f_i y_i + \sum_{(i,j) \in A} c_{ij} x_{ij}
+\]
+
+\subsubsection{Formulazione matematica completa}
+\[
+\begin{aligned}
+\min \quad & z(x, y) = \sum_{i \in I} \sum_{j \in J} c_{ij} x_{ij} + \sum_{i \in I} f_i y_i \\
+\text{soggetto a} \quad & \sum_{i \in I} x_{ij} \geq d_j \quad \text{per ogni } j \in J \quad \text{(soddisfacimento della domanda)} \\
+& \sum_{j \in J} x_{ij} \leq q_i y_i \quad \text{per ogni } i \in I \quad \text{(capacità attiva solo se il sito è aperto)} \\
+& x_{ij} \geq 0 \quad \text{per ogni } i \in I, j \in J \\
+& y_i \in \{0, 1\} \quad \text{per ogni } i \in I
 \end{aligned}
 \]
