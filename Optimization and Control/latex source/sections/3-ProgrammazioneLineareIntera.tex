@@ -195,15 +195,15 @@ x_j \in \{0, 1\} \quad \text{per } j = 1, \ldots, n
     \item $\sum_{j=1}^{n} p_j > b$: non è possibile inserire tutti gli oggetti, altrimenti la soluzione ottima sarebbe banale
 \end{itemize}
 
-\section{Selezione di Scatole per il trasporto - Esempio 2}
-\subsection{Descrizione del problema}
+\subsection{Selezione di Scatole per il trasporto - Esempio 2}
+\subsubsection{Descrizione del problema}
 
 Un'azienda deve caricare un furgone con \textbf{\textit{capacità massima di 10 quintali}} 
 (\textbf{\textit{1000 kg}}). Sono disponibili \textbf{\textit{12 scatole isotermiche}}, ciascuna con un peso e un valore 
 economico. L'obiettivo è \textbf{\textit{massimizzare il valore totale delle scatole caricate}}, 
 senza superare la capacità massima del furgone.
 
-\subsection{Dati del problema}
+\subsubsection{Dati del problema}
 \begin{table}[htbp]
     \centering
     \caption{Caratteristiche delle scatole isotermiche}
@@ -227,7 +227,7 @@ senza superare la capacità massima del furgone.
     \end{tabular}
 \end{table}
 
-\subsection{Formulazione matematica}
+\subsubsection{Formulazione matematica}
 
 \[
 \begin{aligned}
@@ -239,3 +239,260 @@ senza superare la capacità massima del furgone.
 \end{aligned}
 \]
 
+\subsection{Modello dello zaino - Pianificazione degli investimenti}
+Il modello dello zaino può essere applicato anche a problemi di 
+pianificazione degli investimenti, dove si dispone di un budget limitato 
+e si devono selezionare progetti tra alternative indipendenti e competitive.
+
+È possibile "mappare" concettualmente i concetti
+\begin{itemize}
+    \item Oggetti $\rightarrow$ Progetti di investimento
+    \item Peso $\rightarrow$ Capitale richiesto
+    \item Valore $\rightarrow$ Rendimento atteso
+    \item Capacità dello zaino $\rightarrow$ Budget disponibile
+\end{itemize}
+
+\subsection{Problema dello zaino - Esempio 3}
+\subsubsection{Descrizione del problema}
+Una società dispone di 200.000 euro da investire in tre progetti: A, B, C. 
+Ogni progetto ha un costo e un rendimento atteso:
+
+\begin{table}[htbp]
+    \centering
+    \caption{Caratteristiche dei progetti di investimento}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Progetto} & \textbf{Costo [k€]} & \textbf{Ritorno atteso [k€]} \\
+        \hline
+        A & 90 & 100 \\
+        B & 80 & 80 \\
+        C & 70 & 75 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{Formulazione matematica}
+
+\[
+\begin{aligned}
+\max \quad & z(x) = 100x_A + 80x_B + 75x_C \\
+\text{soggetto a} \quad & 90x_A + 80x_B + 70x_C \leq 200 \\
+& x_A, x_B, x_C \in \{0, 1\}
+\end{aligned}
+\]
+
+\subsection{Modello dello zaino - Oggetti in quantità variabile}
+In questa variante, ogni variabile decisionale rappresenta quanti oggetti 
+di un certo tipo inserire nello zaino, con un vincolo di capacità.
+Le variabili sono quindi intere non negative.
+
+\subsubsection{Formulazione matematica}
+\[
+\begin{aligned}
+\max \quad & z(x) = \sum_{j=1}^{n} c_j x_j \\
+\text{soggetto a} \quad & \sum_{j=1}^{n} p_j x_j \leq b \\
+& x_j \in \mathbb{Z}_{\geq 0} \quad \text{per } j = 1, \dots, n
+\end{aligned}
+\]
+
+\subsection{Riempimento di Scatole con biscotti - Esempio 4}
+\subsubsection{Descrizione del problema}
+Nel reparto confezionamento di un'azienda, si devono riempire scatole da 120g con 
+biscotti di 9 tipi diversi. Ogni tipo ha un peso e una percentuale di cioccolato pregiato (valore).
+
+\subsubsection{Dati del problema}
+\begin{table}[htbp]
+    \centering
+    \caption{Caratteristiche dei diversi tipi di biscotti}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Tipo} & \textbf{Peso [g]} & \textbf{\% Cioccolato} \\
+        \hline
+        1 & 20 & 32 \\
+        2 & 25 & 58 \\
+        3 & 26 & 65 \\
+        4 & 21 & 18 \\
+        5 & 36 & 28 \\
+        6 & 28 & 55 \\
+        7 & 28 & 40 \\
+        8 & 27 & 40 \\
+        9 & 23 & 25 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{Formulazione matematica}
+\[
+\begin{aligned}
+\max \quad & z(x) = 32x_1 + 58x_2 + 65x_3 + 18x_4 + 28x_5 + 55x_6 + 40x_7 + 40x_8 + 25x_9 \\
+\text{soggetto a} \quad & 20x_1 + 25x_2 + 26x_3 + 21x_4 + 36x_5 + 28x_6 + 28x_7 + 27x_8 + 23x_9 \leq 120 \\
+& x_j \in \mathbb{Z}_{\geq 0} \quad \text{per } j = 1, \dots, 9
+\end{aligned}
+\]
+
+\subsection{Modello dello zaino multidimensionale}
+Il modello dello zaino può essere esteso per considerare più risorse 
+(es. capitale, manodopera, tempo, materie prime) o più periodi temporali.
+
+\subsubsection{Formulazione generale}
+Siano:
+\begin{itemize}
+    \item $m$: numero di risorse o periodi
+    \item $p_{ij}$: quantità della risorsa $i$ richiesta dall'oggetto $j$
+    \item $b_i$: disponibilità della risorsa $i$
+\end{itemize}
+
+\[
+\begin{aligned}
+\max \quad & z(x) = \sum_{j=1}^{n} c_j x_j \\
+\text{soggetto a} \quad & \sum_{j=1}^{n} p_{ij} x_j \leq b_i \quad \text{per } i = 1, \dots, m \\
+& x_j \in \mathbb{Z}_{\geq 0} \quad \text{per } j = 1, \dots, n
+\end{aligned}
+\]
+
+\subsection{Problema dello zaino multidimensionale - Esempio 5}
+\subsubsection{Descrizione del problema}
+Una compagnia aerea sta valutando la realizzazione di 3 progetti per l'acquisto 
+di nuovi aerei, distribuiti su un orizzonte temporale di 4 mesi. Ogni 
+progetto richiede un certo investimento mensile, mentre il budget disponibile 
+varia di mese in mese.
+
+\subsubsection{Dati del problema}
+\begin{table}[htbp]
+    \centering
+    \caption{Budget mensile disponibile}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Mese} & \textbf{Budget disponibile [€]} \\
+        \hline
+        1 & 1.000.000 \\
+        2 & 750.000 \\
+        3 & 950.000 \\
+        4 & 1.400.000 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Il profitto annuo atteso per ciascun progetto è:
+\begin{table}[htbp]
+    \centering
+    \caption{Profitto annuo atteso per i progetti}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Progetto} & \textbf{Profitto annuo atteso [€]} \\
+        \hline
+        Progetto 1 & 480.000 \\
+        Progetto 2 & 300.000 \\
+        Progetto 3 & 250.000 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+I costi mensili per ciascun progetto sono:
+\begin{table}[htbp]
+    \centering
+    \caption{Costi mensili per ciascun progetto}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Mese} & \textbf{Progetto 1 [€]} & \textbf{Progetto 2 [€]} & \textbf{Progetto 3 [€]} \\
+        \hline
+        1 & 750.000 & 200.000 & 980.000 \\
+        2 & 550.000 & 150.000 & 70.000 \\
+        3 & 820.000 & 80.000 & 600.000 \\
+        4 & 500.000 & 105.000 & 203.000 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{Formulazione matematica}
+\[
+\begin{aligned}
+\max \quad & z(x)= 480x_1 + 300x_2 + 250x_3 \\
+\text{soggetto a} \quad & 750x_1 + 200x_2 + 980x_3 \leq 1.000 \quad \text{(budget mese 1)} \\
+& 550x_1 + 150x_2 + 70x_3 \leq 750 \quad \text{(budget mese 2)} \\
+& 820x_1 + 80x_2 + 600x_3 \leq 950 \quad \text{(budget mese 3)} \\
+& 500x_1 + 105x_2 + 203x_3 \leq 1.400 \quad \text{(budget mese 4)} \\
+& x_1, x_2, x_3 \in \{0,1\}
+\end{aligned}
+\]
+
+Questa formulazione matematica esprime l'obiettivo di massimizzare il profitto annuo atteso 
+selezionando una combinazione ottimale dei tre progetti. I vincoli garantiscono che, per ciascun mese, 
+la somma dei costi dei progetti selezionati non superi il budget disponibile. Le variabili binarie 
+indicano se un progetto viene realizzato ($x_j = 1$) o meno ($x_j = 0$).
+
+Si noti che i coefficienti nella funzione obiettivo rappresentano il profitto annuo atteso in migliaia 
+di euro, e i coefficienti nei vincoli rappresentano i costi mensili in migliaia di euro.
+
+\section{Modelli di ottimizzazione con Costi Fissi di Avviamento}
+In molti problemi reali, come nella pianificazione della produzione, 
+è necessario sostenere costi fissi di avviamento per attivare una certa attività 
+(es. configurazione dei macchinari). Questi costi:
+\begin{itemize}
+    \item Non dipendono dalla quantità prodotta
+    \item Si attivano solo se la produzione è effettivamente avviata ($geq 0$)
+\end{itemize}
+
+\subsection{Formulazione matematica}
+
+Per ogni prodotto $j$, definiamo:
+\begin{itemize}
+    \item $c_j$: costo variabile unitario di produzione
+    \item $f_j$: costo fisso di avviamento della produzione
+    \item $x_j$: quantità prodotta del prodotto $j$
+\end{itemize}
+
+\subsubsection{Funzione obiettivo}
+La funzione di costo per il prodotto $j$ è:
+\[
+z_j(x_j) =
+\begin{cases}
+f_j + c_j x_j, & \text{se } x_j > 0 \\
+0, & \text{se } x_j = 0
+\end{cases}
+\]
+
+Questa funzione è non lineare e presenta una discontinuità in $x_j = 0$.
+
+\subsubsection{Linearizzazione del modello}
+Per rendere il modello risolvibile con tecniche di Programmazione Lineare Intera Mista, 
+si introduce una variabile intera binaria $y_j$ che indica se il prodotto $j$ è attivo ($y_j = 1$) o meno ($y_j = 0$).
+\begin{itemize}
+    \item $x_j = 1$ se $x_j > 0$ (produzione attiva)
+    \item $x_j = 0$ se $y_j = 0$ (produzione non attiva)
+\end{itemize}
+
+E presenta una funzione obiettivo lineare:
+\[
+\min z(x, y) = \sum_{j=1}^{n} (f_j y_j + c_j x_j)
+\]
+
+\subsubsection{Vincoli}
+Per garantire coerenza tra $x_j$ e $y_j$, si introducono i seguenti vincoli:
+\[
+x_j \leq M_j y_j \quad \text{per } j = 1, \dots, n
+\]
+
+dove $M_j$ è un limite superiore alla produzione del prodotto $j$.
+NB. La minimizzazione della funzione obiettivo implica che, se $y_j = 0$, allora $x_j = 0$ 
+per evitare costi fissi inutili.
+
+\subsubsection{Formulazione completa del modello}
+Si supponga che i prodotti $j=1, \ldots, n$ siano semilavorati utilizzati per produrre 
+$m$ prodotti finiti. Siano:
+\begin{itemize}
+    \item $d_i$: domanda del prodotto finito $i$
+    \item $a_{ij}$: quantità del semilavorato $j$ necessaria per produrre un'unità del prodotto finito $i$
+    \item $M_j$: capacità massima di produzione del semilavorato $j$
+\end{itemize}
+
+Il modello PIM binario è:
+\[
+\begin{aligned}
+\min \quad & z(x, y) = \sum_{j=1}^{n} (f_j y_j + c_j x_j) \\
+\text{soggetto a} \quad & \sum_{j=1}^{n} a_{ij} x_j \geq d_i \quad \text{per } i = 1, \dots, m \\
+& x_j \leq M_j y_j \quad \text{per } j = 1, \dots, n \\
+& x_j \geq 0 \quad \text{per } j = 1, \dots, n \\
+& y_j \in \{0, 1\} \quad \text{per } j = 1, \dots, n
+\end{aligned}
+\]
