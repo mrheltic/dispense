@@ -1,5 +1,7 @@
 Queste dispense sono rilasciate con la **licenza Creative Commons Attribuzione - Condividi allo stesso modo - Non commerciale 4.0 International (CC BY-SA NC 4.0)**
 
+Tutti i contenuti delle dispense sono frutto di rielaborazione del materiale didattico delle relative materie, a questo seguono modifiche per aumentarne la fruibilità e aggiungere informazioni che aggiungono contesto.
+
 L'idea alla base del progetto è che le informazioni debbano essere libere a livello ideologico, non economico. Ciò significa che chiunque può:
 
 - ⭐ Utilizzare le dispense, attribuendo sempre il giusto merito.
